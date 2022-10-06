@@ -13,7 +13,7 @@ namespace GeneralStoreMVC.Controllers
         {
             _ctx = ctx;
         }
-        public IActionResult Index()
+        public ActionResult Index()
         {
             var customers = _ctx.Customers.Select(customer => new CustomerIndexModel
             {
@@ -25,14 +25,14 @@ namespace GeneralStoreMVC.Controllers
             return View(customers);
         }
 
-        public IActionResult Create()
+        public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create (CustomerCreateModel model)
+        public ActionResult Create (CustomerCreateModel model)
         {
             if(ModelState.IsValid)
             {
@@ -50,6 +50,26 @@ namespace GeneralStoreMVC.Controllers
                 return Redirect("/Customer");
             }
             TempData["ErrorMsg"] = "Unable to save to the database. Please try again later.";
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult Details (int? id)
+        {
+            if(id== null)
+            {
+                return NotFound();
+            }
+            var customer = _ctx.Customers.Find(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            var model = new CustomerDetailModel
+            {
+                Id = customer.Id,
+                Name = customer.Name,
+                Email = customer.Email,
+            };
             return View(model);
         }
     }

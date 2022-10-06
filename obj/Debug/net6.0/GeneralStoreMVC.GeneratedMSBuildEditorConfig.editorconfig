@@ -15,16 +15,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\dcsul\source\repos\GeneralStoreMVC\GeneralStoreMVC
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/dcsul/source/repos/GeneralStoreMVC/GeneralStoreMVC/Views/Customer/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dcsul/source/repos/GeneralStoreMVC/GeneralStoreMVC/Views/Customer/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dcsul/source/repos/GeneralStoreMVC/GeneralStoreMVC/Views/Customer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/dcsul/source/repos/GeneralStoreMVC/GeneralStoreMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/dcsul/source/repos/GeneralStoreMVC/GeneralStoreMVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/dcsul/source/repos/GeneralStoreMVC/GeneralStoreMVC/Views/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/dcsul/source/repos/GeneralStoreMVC/GeneralStoreMVC/Views/Shared/Error.cshtml]
