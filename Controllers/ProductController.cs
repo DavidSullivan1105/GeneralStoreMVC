@@ -93,12 +93,21 @@ namespace GeneralStoreMVC.Controllers
         // GET: Product/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null) 
             {
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context
+                .Products
+                .Select(p => new ProductEditModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price= p.Price,
+                    QuantityInStock= p.QuantityInStock,
+                })
+                .FirstOrDefaultAsync(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -111,15 +120,18 @@ namespace GeneralStoreMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,QuantityInStock,Price")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,QuantityInStock,Price")] ProductEditModel model)
         {
-            if (id != product.Id)
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
+                product.Name = model.Name;
+                product.Price = model.Price;
+                product.QuantityInStock = model.QuantityInStock;
                 try
                 {
                     _context.Update(product);
@@ -141,15 +153,25 @@ namespace GeneralStoreMVC.Controllers
             return View(product);
         }
 
+           
+
         // GET: Product/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products
+            var product = await _context
+                .Products
+                .Select(p=>new ProductDetailModel
+                {
+                    Id=p.Id,
+                    Price=p.Price,
+                    Name=p.Name,
+                    QuantityInStock=p.QuantityInStock,
+                })
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -164,18 +186,10 @@ namespace GeneralStoreMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Products == null)
-            {
-                return Problem("Entity set 'GeneralStoreDBContext.Products'  is null.");
-            }
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-            }
-            
+           var product = await _context.Products.FindAsync(id); 
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index)); 
         }
 
         private bool ProductExists(int id)
